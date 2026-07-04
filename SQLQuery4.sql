@@ -9,3 +9,11 @@ DESC
 SELECT * 
 FROM customers
 ORDER BY score DESC
+
+-- NESTED SORTED 
+
+SELECT * 
+FROM customers
+ORDER BY 
+	country ASC,
+	score DESC

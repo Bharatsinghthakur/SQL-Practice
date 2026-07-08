@@ -10,3 +10,4 @@ CREATE TABLE persons(
 	phone VARCHAR(15) NOT NULL
 	CONSTRAINT pk_persons PRIMARY KEY(id) -- pk_persons is internal for DB , id column is primary key
 )
+SELECT * FROM persons

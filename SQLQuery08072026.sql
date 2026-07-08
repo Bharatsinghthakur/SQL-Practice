@@ -20,3 +20,4 @@ DROP COLUMN phone
 
 -- Risky command 
 DROP TABLE persons
+

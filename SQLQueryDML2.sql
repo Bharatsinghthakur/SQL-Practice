@@ -67,4 +67,21 @@ SELECT *
 FROM customers
 WHERE country is NULL
 
+/*
+DELETE 
+to remove rows from our table SQL start removing rows from exisiting table 
 
+DELETE FROM table_name
+WHERE <condition>
+
+-- ALWAYS use WHERE To avoid DELETING all rows unintentionally 
+*/
+
+-- DELETE all customers with an ID greater than 9
+
+DELETE FROM customers 
+WHERE id > 9
+
+SELECT * 
+FROM customers 
+WHERE id > 9

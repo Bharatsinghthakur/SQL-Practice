@@ -85,3 +85,13 @@ WHERE id > 9
 SELECT * 
 FROM customers 
 WHERE id > 9
+
+
+/*
+DELETE - table 
+DELETE FROM PERSONS -- will delete all the rows  
+TRUNCATE - clears the whole table at once without checking or logging 
+faster than delete command 
+
+TRUNCATE TABLE persons
+*/

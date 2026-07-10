@@ -65,3 +65,27 @@ FROM customers AS c
 INNER JOIN orders AS o 
 ON c.id = o.customer_id
 */
+
+/*
+- LEFT JOIN 
+- Return all rows from left and only matching from the right 
+- ** order of the tables are important **
+
+SELECT * 
+FROM A  -- left 
+LEFT JOIN B  -- right
+ON A.Key = B.key
+*/
+
+/*
+GET all customers along with their orders,
+including those without orders
+*/
+SELECT 
+     c.id,
+     c.first_name,
+     o.order_id,
+     o.sales
+FROM customers AS c 
+LEFT JOIN orders AS o
+ON c.id = o.customer_id

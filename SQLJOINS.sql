@@ -53,3 +53,15 @@ SELECT
 FROM customers 
 INNER JOIN orders 
 ON customers.id = orders.customer_id 
+
+/* 
+cleaner  way 
+SELECT 
+    c.id,
+    c.first_name,
+    o.orders_id,
+    o.sales
+FROM customers AS c 
+INNER JOIN orders AS o 
+ON c.id = o.customer_id
+*/

@@ -55,3 +55,47 @@ SELECT
 FROM customers AS c
 FULL JOIN orders AS o
 ON c.id = o.customer_id
+
+
+-- ADVANCED JOIN 
+/*
+LEFT ANTI JOIN - Returns rows from the left that has no match in right 
+- order of the table is important
+SELECT * 
+FROM A 
+LEFT JOIN B 
+ON A.key = B.key
+WHERE B.key IS NULL 
+*/
+
+-- Get all customers who haven't place an order
+
+SELECT * 
+FROM customers AS c
+LEFT JOIN orders AS o 
+ON c.id = o.customer_id
+WHERE o.customer_id IS NULL 
+
+/*
+RIGHT ANTI JOIN - returns rows from right that has no match left 
+order of tables is important
+
+SELECT * 
+FROM A 
+RIGHT JOIN B 
+ON A.key = B.key
+WHERE A.key is NULL
+*/
+-- get all the orders without matching customers 
+SELECT * 
+FROM customers AS c 
+RIGHT JOIN orders AS o 
+ON c.id = o.customer_id 
+WHERE c.id IS NULL
+
+-- alternative 
+SELECT * 
+FROM orders AS o
+LEFT JOIN customers AS c
+ON o.customer_id = c.id
+WHERE c.id IS NULL

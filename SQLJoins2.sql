@@ -99,3 +99,51 @@ FROM orders AS o
 LEFT JOIN customers AS c
 ON o.customer_id = c.id
 WHERE c.id IS NULL
+
+/*
+FULL ANTI JOIN - returns only rows that doesn't match in either tables 
+
+- order of the table doesn't matter 
+
+SELECT * 
+FROM A 
+FULL JOIN B 
+ON A.key = B.key 
+WHERE	
+	B.key IS NULL
+OR	
+	A.key IS NULL
+*/
+
+-- find customers without orders and orders without customers 
+
+SELECT * 
+FROM orders AS o 
+FULL JOIN customers AS c
+ON c.id = o.customer_id
+WHERE c.id IS NULL OR o.customer_id is NULL
+
+/*
+Get all customers along with their orders,but only for customers who have placed an order
+without using inner join
+*/
+SELECT * 
+FROM customers AS c
+LEFT JOIN orders AS o
+ON o.customer_id = c.id
+WHERE o.customer_id IS NOT NULL
+
+/*
+CROSS JOIN - combines every row from left with every row from right 
+All possible combinations - cartersian join 
+- the order of the table doesn't matter
+
+SELECT * 
+FROM A
+CROSS JOIN B
+*/
+
+-- generate all possible combinations of customers and orders
+SELECT * 
+FROM customers 
+CROSS JOIN orders 

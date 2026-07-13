@@ -84,3 +84,30 @@ SELECT
 FROM Sales.Employees
 
 
+/*
+UNION ALL 
+Returns all rows from both queries , including duplicates 
+** SET operator that doesn't remove duplicates 
+** Union ALL is genrally faster than UNION -- if we are confident that no dublicates
+exists than we can use UNION ALL 
+
+*/
+
+--Combine the data from employees and customers into one table including dublicates
+
+SELECT
+	 FirstName,
+	 LastName
+FROM Sales.Employees
+
+UNION ALL 
+
+SELECT
+	 FirstName,
+	 LastName
+FROM Sales.Customers 
+
+
+
+
+

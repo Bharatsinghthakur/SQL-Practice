@@ -108,6 +108,46 @@ SELECT
 FROM Sales.Customers 
 
 
+/*
+EXCEPT(MINUS) 
+Returns all distinct rows from the first query that are not found in second query
+- It is the only one where the order of queries affect the result 
+
+*/
+-- Find the employees who are not customers at the same time 
+
+SELECT 
+	 FirstName,
+	 LastName
+FROM Sales.Employees
+
+EXCEPT 
+
+SELECT 
+	 FirstName,
+	 LastName
+FROM Sales.Customers
+
+/*
+Intersect 
+Returns only the rows that are common in both queries 
+** return common row between two tables 
+** It will remove dublicates 
+
+*/
+
+-- Find the employees who are also customers 
+SELECT
+	FirstName,
+	LastName
+FROM Sales.Employees
+
+INTERSECT
+
+SELECT
+	FirstName,
+	LastName
+FROM Sales.Customers
 
 
 

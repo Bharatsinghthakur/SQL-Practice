@@ -109,4 +109,50 @@ SELECT
 
 SELECT 
 	'report.txt' AS old_file_format,
-	REPLACE('report.txt','.txt','.csv') AS new_file_format 
+	REPLACE('report.txt','.txt','.csv') AS new_file_format
+	
+/*CALCULATIONS */
+-- LEN : counts how many characters in string , date , or numeric value 
+
+-- calcualte the length of each customers first_name
+
+SELECT 
+	first_name,
+	LEN(first_name) AS len_name
+FROM customers
+
+
+/* STRING EXTRACTION 
+LEFT & RIGHT 
+
+-- LEFT extracts specific numbers of characters from the start of string value
+-- RIGHT extracts specific numbers of characters from the END of string value 
+LEFT (value, numbers of characters)
+**/
+
+-- Retrieve the first two characters of each first name 
+
+SELECT 
+	first_name,
+	LEFT(TRIM(first_name),2) first_2_char
+FROM customers
+
+
+-- Retrieve the last two characters of each first name
+
+SELECT 
+	first_name,
+	RIGHT(TRIM(first_name),2) AS last_2_char
+FROM customers
+
+-- SUBSTRING 
+-- extracts a part of string at a specified postion 
+-- SUBSTRING(value,start,length)
+
+-- after 2nd character extract all characters
+
+SELECT 
+	first_name,
+	SUBSTRING(TRIM(first_name),3,LEN(first_name)) AS sub_firstname
+FROM customers
+

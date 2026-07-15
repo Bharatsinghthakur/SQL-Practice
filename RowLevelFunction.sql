@@ -93,3 +93,20 @@ FROM customers
 
 FROM customers
 WHERE first_name != TRIM(first_name)
+
+
+-- REPLACE : replaces specific characters with new character
+
+-- ** IT not only replace but also remove !
+
+-- REMOVE dashed (-) from phone number 
+
+SELECT 
+	'123-456-7890' AS phone,
+	REPLACE('123-456-7890','-','') AS clean_phone
+
+-- Replace file Extence from TXT to csv
+
+SELECT 
+	'report.txt' AS old_file_format,
+	REPLACE('report.txt','.txt','.csv') AS new_file_format 

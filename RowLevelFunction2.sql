@@ -40,3 +40,39 @@ SELECT
 	'2025-08-20' HardCoded,
 	GETDATE() Today
 From Sales.orders
+
+/*
+DATE & TIME FUNCTIONS 
+- PART EXTRACTION 
+-- DAY
+-- MONTH
+-- YEAR
+-- DATEPART
+-- DATENAME
+-- DATETRUNC
+-- EOMONTH
+
+- FORMAT & CASTING 
+-- FORMAT
+-- CONVERT
+-- CAST
+
+- CALCULATIONS
+-- DATEADD
+-- DATEDIFF
+
+VALIDATION 
+ISDATE
+ 
+*/
+
+
+-- DAY | MONTH | YEAR
+
+SELECT 
+	OrderID,
+	CreationTime,
+	YEAR(CreationTime) Year,
+	MONTH(CreationTime) MONTH,
+	DAY(CreationTime) DAY
+From Sales.orders

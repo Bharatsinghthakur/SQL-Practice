@@ -76,3 +76,49 @@ SELECT
 	MONTH(CreationTime) MONTH,
 	DAY(CreationTime) DAY
 From Sales.orders
+
+
+-- DATEPART() 
+-- Returns a specific part of date as a number
+-- many information is stored in data like quarter , week etc . but not visible
+
+-- syntax
+-- DATEPART(part,date)
+-- DATEPART(month,OrderDate)
+-- DATEPART(mm,'2025-08-20') -- abbreviation
+
+SELECT 
+	DATEPART(year,CreationTime) Year_dp,
+	DATEPART(month,CreationTime) Month_dp,
+	DATEPART(day,CreationTime) Day_dp,
+	DATEPART(hour,CreationTime) hour_dp,
+	DATEPART(quarter,CreationTime) Quater_dp,
+	DATEPART(weekday,CreationTime) Week_dp
+FROM Sales.Orders
+
+-- DATENAME:
+-- Returns the name of specific part of the date
+-- return type is string
+-- syntax DATENAME(part, date)
+
+
+SELECT 
+	DATENAME(month,CreationTime) AS Month_dn,
+	DATENAME(weekday, CreationTime) AS Week_dn,
+	DATENAME(day,CreationTime) AS day_dn,
+	DATENAME(year,CreationTime) AS year_dn
+FROM Sales.Orders
+
+-- DATETRUNC 
+-- truncates the date to the specific part
+-- Allow us to change the level of details of information 
+-- reset the other part of the datetime - for date - 01 for time - 00
+
+SELECT 
+	OrderID,
+	CreationTime,
+	DATETRUNC(minute,CreationTime) Minute_dt,
+	DATETRUNC(day,CreationTime) Day_dt,
+	DATETRUNC(year,CreationTime) Year_dt
+
+FROM Sales.Orders

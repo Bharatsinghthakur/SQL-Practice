@@ -152,3 +152,21 @@ SELECT
 	-- if we need start of month date we can use DATETRUNC(Month)
 	DATETRUNC(month,CreationTime) as STARTOFMONTH
 FROM Sales.Orders
+
+
+-- How many orders were palced each year
+
+SELECT
+	YEAR(OrderDate) YEAR,
+	COUNT(*) NoOfOrders
+FROM Sales.Orders
+GROUP BY YEAR(ORDERDATE)
+
+-- how many orders palced each month with full name of month
+
+SELECT
+	DATENAME(month,OrderDate) MONTH,
+	COUNT(*) NoOfOrders
+FROM Sales.Orders
+GROUP BY DATENAME(Month,OrderDate)
+

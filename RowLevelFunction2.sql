@@ -122,3 +122,33 @@ SELECT
 	DATETRUNC(year,CreationTime) Year_dt
 
 FROM Sales.Orders
+
+-- level of granuality is not defined in output as no order will be at same level
+
+SELECT 
+	CreationTime,
+	COUNT(*)
+FROM Sales.Orders
+GROUP BY CreationTime
+
+-- we can use DATETRUNC for this to overcome this problem
+SELECT
+	DATETRUNC(month,CreationTime) Creation,
+	COUNT(*) order_count
+FROM Sales.Orders
+GROUP BY DATETRUNC(month,CreationTime)
+
+--EOMONTH
+-- Returns the last day of the month
+-- syntax EOMONTH(date)
+
+SELECT 
+	EOMONTH('2025-08-11')
+
+SELECT 
+	OrderID,
+	CreationTime,
+	EOMONTH(CreationTime) AS ENDOFMONTH,
+	-- if we need start of month date we can use DATETRUNC(Month)
+	DATETRUNC(month,CreationTime) as STARTOFMONTH
+FROM Sales.Orders

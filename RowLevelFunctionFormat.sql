@@ -53,3 +53,11 @@ SELECT
 	'Day ' + FORMAT(CreationTime,'ddd MMM') + ' Q' + DATENAME(quarter , CreationTime)
 	 + ' ' + FORMAT(CreationTime,'yyyy hh:mm:ss tt') AS customFormat
 FROM Sales.Orders
+
+
+-- aggregation 
+SELECT 
+	FORMAT(OrderDate,'MMM yy') OrderDate,
+	COUNT(*)
+FROM Sales.Orders
+GROUP BY FORMAT(OrderDate,'MMM yy')

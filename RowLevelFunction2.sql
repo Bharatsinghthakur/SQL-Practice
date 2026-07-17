@@ -170,3 +170,8 @@ SELECT
 FROM Sales.Orders
 GROUP BY DATENAME(Month,OrderDate)
 
+-- show all orders were placed in month of Feburary
+SELECT 
+	* 
+FROM Sales.Orders
+WHERE MONTH(OrderDate) = 2

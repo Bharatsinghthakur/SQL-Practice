@@ -176,3 +176,29 @@ SELECT
 FROM Sales.Orders
 WHERE MONTH(OrderDate) = 2
 
+
+/*
+CONVERT:
+converts a date & time value to a different data type & formats the value 
+
+syntax:
+CONVERT(data_type,value[,style])
+
+EG:
+	CONVERT(INT,'124')
+	CONVERT(VARCHAR,OrderDate,'34')
+*/
+USE SalesDB;
+SELECT 
+	CONVERT(INT,'123') AS [STRING TO INT CONVERT],
+	CONVERT(DATE,'2026-07-18') AS [STRING TO DATE CONVERT],
+	CreationTime,
+	CONVERT(DATE,CreationTime) AS [DATETIME TO DATE CONVERT]
+FROM Sales.Orders
+
+
+
+
+
+
+

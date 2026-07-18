@@ -217,10 +217,44 @@ SELECT
 	CAST(CreationTime AS Date) AS [Datetime to Date]
 From Sales.orders
 
+/* 
+Calculations
+- DATEADD
+- DATEDIFF
 
+DATEADD:
+	add or substract a specified time Interval to/from a date
+Syntax:
+	DATEADD(part,interval,date)
+*/
+SELECT
+	OrderID,
+	OrderDate,
+	DATEADD(month, 3, OrderDate) AS ThreeMonthsLater,
+	DATEADD(year, 2, OrderDate) AS TwoYearsLater,
+	DATEADD(day,-10,OrderDate) AS TendaysBefore
+FROM Sales.Orders
 
+/*
+DATEDIFF():
+	find the diffrences between two dates
+syntax:
+		DATEDDIFF(part,start_date,end_date)
+eg:
+		DATEDIFF(year,OrderDate,ShipDate)
+*/
 
+-- Calculate the age of employees
+USE SalesDB;
+SELECT 
+	EmployeeID,
+	BirthDate,
+	DATEDIFF(year , BirthDate, GETDATE()) AS EMP_AGE
+FROM Sales.Employees
 
-
-
-
+-- Find the average shipping duration in days for each month
+SELECT
+	MONTH(OrderDate) AS OrderDate,
+	AVG(DATEDIFF(day,OrderDate,shipDate)) AS AVG_Day_To_ship
+FROM Sales.Orders
+GROUP BY MONTH(OrderDate)

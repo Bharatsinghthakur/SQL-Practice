@@ -193,8 +193,30 @@ SELECT
 	CONVERT(INT,'123') AS [STRING TO INT CONVERT],
 	CONVERT(DATE,'2026-07-18') AS [STRING TO DATE CONVERT],
 	CreationTime,
-	CONVERT(DATE,CreationTime) AS [DATETIME TO DATE CONVERT]
+	CONVERT(DATE,CreationTime) AS [DATETIME TO DATE CONVERT],
+	CONVERT(VARCHAR, CreationTime,32) AS [USA Std. Style:32],
+	CONVERT(VARCHAR, CreationTime,34) AS [EU Std. Style:32]
 FROM Sales.Orders
+
+/*
+CAST():
+	converts a value to a specified data type 
+Syntax:
+	 CAST(value AS data_type)
+EG:
+	CAST('123' AS INT)
+	CAST('18-07-2026' AS DATE)
+** No format can be specified
+*/
+SELECT
+	CAST('123' AS INT) AS [String to INT],
+	CAST(123 AS VARCHAR) AS [Int TO String],
+	CAST ('2026-07-17' AS  DATE) AS [String TO Date],
+	CAST ('2026-07-17' AS  DATETIME2) AS [String TO Datetime],
+	CreationTime,
+	CAST(CreationTime AS Date) AS [Datetime to Date]
+From Sales.orders
+
 
 
 

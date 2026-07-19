@@ -269,3 +269,38 @@ SELECT
 	DATEDIFF(day,LAG(OrderDate) OVER (ORDER BY OrderDate),OrderDate) NoOfDays
 From Sales.Orders
 
+/*
+LAG() : access a value from a previous row 
+Validation 
+
+-- ISDATE():
+	check is a value is a date returns 1 , if the string value is valid date ,
+	0 if its not a valid date
+syntax 
+ISDATE(value)
+ISDATE('2025-08-20')
+
+*/
+
+SELECT 
+	ISDATE('123') DateCheck1,
+	ISDATE('2026-08-20') DateCheck2,
+	ISDATE('20-08-2025') DateCheck3,
+	ISDATE('2026') DateCheck4
+
+---- some corrupt data case
+
+SELECT 
+	OrderDate,
+	ISDATE(OrderDate),
+	CASE WHEN ISDATE(OrderDate) = 1 THEN CAST(OrderDate AS DATE)
+		ELSE '9999-01-01'
+	END NewOrderDate
+FROM 
+(
+SELECT '2025-08-20' AS OrderDate UNION 
+SELECT '2025-08-23' UNION
+SELECT '2025-08-25' UNION
+SELECT '2025-08'
+) t
+WHERE ISDATE(OrderDate) = 0

@@ -258,3 +258,14 @@ SELECT
 	AVG(DATEDIFF(day,OrderDate,shipDate)) AS AVG_Day_To_ship
 FROM Sales.Orders
 GROUP BY MONTH(OrderDate)
+
+
+-- Find the number of days between each order and previous order
+
+SELECT
+	OrderID,
+	OrderDate AS CurrentOrder,
+	LAG(OrderDate) OVER (ORDER By OrderDate) PreviousOrderDate,
+	DATEDIFF(day,LAG(OrderDate) OVER (ORDER BY OrderDate),OrderDate) NoOfDays
+From Sales.Orders
+

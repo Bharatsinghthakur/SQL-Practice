@@ -51,3 +51,58 @@ SELECT
 	AVG(Score) OVER() AvgScores,
 	AVG(COALESCE(Score,0)) OVER() AvgScores2 
 FROM Sales.Customers
+
+
+-- display the fullname of customers in single Field
+-- by merging their First and last name 
+-- and add 10 bonus to each customer's score.
+
+SELECT 
+	CustomerID,
+	FirstName,
+	LastName,
+	FirstName + ' ' + COALESCE(LastName,'') AS FullName,
+	Score,
+	COALESCE(Score,0) + 10 AS BonusScore
+From Sales.Customers
+
+
+-- Sort the customers from lowest to highest scores,
+-- with nulls appearing last
+
+SELECT
+	CustomerID,
+	Score,
+	COALESCE(Score,99999) -- Lazy method
+FROM Sales.Customers
+ORDER BY COALESCE(Score,99999)
+
+-- correct way 
+SELECT 
+	CustomerID,
+	Score,
+	CASE WHEN Score IS NULL THEN 1 ELSE 0 END FLAG
+FROM Sales.Customers
+ORDER BY CASE WHEN Score IS NULL THEN 1 ELSE 0 END,Score
+
+-- preventing the error of dividing by zero
+-- Find the sales price for each order by dividing the sales by the quantity.
+
+SELECT 
+	OrderID,
+	Sales,
+	Quantity,
+	Sales / NULLIF(Quantity,0) AS Price
+FROM Sales.Orders
+
+-- Identify the customers who have no scores 
+
+SELECT * 
+FROM Sales.Customers
+WHERE Score IS NULL
+
+-- show all the customers who has scores 
+SELECT 
+	* 
+FROM Sales.Customers
+WHERE SCORE IS NOT NULL

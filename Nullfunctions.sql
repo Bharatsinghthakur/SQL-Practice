@@ -43,5 +43,5 @@ EG:
 	)
 */
 
-
+-- find the average scores of the customers 
 

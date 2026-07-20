@@ -44,4 +44,10 @@ EG:
 */
 
 -- find the average scores of the customers 
-
+use SalesDB;
+SELECT 
+	CustomerID,
+	Score,
+	AVG(Score) OVER() AvgScores,
+	AVG(COALESCE(Score,0)) OVER() AvgScores2 
+FROM Sales.Customers

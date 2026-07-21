@@ -109,3 +109,13 @@ WHERE SCORE IS NOT NULL
 
 
 ------------------------------------
+-- List all details for customers who have not places any orders
+USE SalesDB;
+
+SELECT 
+c.*,
+o.OrderId
+FROM Sales.Customers c
+LEFT JOIN Sales.Orders o 
+ON c.CustomerID = o.CustomerID
+WHERE o.CustomerID IS NULL

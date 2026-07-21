@@ -106,3 +106,6 @@ SELECT
 	* 
 FROM Sales.Customers
 WHERE SCORE IS NOT NULL
+
+
+------------------------------------

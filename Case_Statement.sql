@@ -18,4 +18,27 @@ END
 
 */
 
+/*
+CATEGORIZING DATA 
+- main purpose is data transformation 
+derive new information 
+-- create new columns based on existing data
+-- Generate a report showing the total sales for each category 
+
+ ** high - If sales higher than 50 
+ ** medium - If sales between 20 and 50 
+ ** low - if the sales equal or lower than 20
+ sort the result from lowest to highest
+*/
+
+SELECT 
+	OrderID,
+	Sales,
+CASE
+	WHEN Sales > 50 THEN 'High'
+	WHEN Sales > 20 THEN 'Medium'
+	ELSE 'Low'
+END Category
+FROM Sales.Orders
+
 

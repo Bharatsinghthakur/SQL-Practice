@@ -41,4 +41,18 @@ CASE
 END Category
 FROM Sales.Orders
 
-
+SELECT
+	Category,
+	SUM(Sales) As TotalSales
+FROM(
+	SELECT 
+	OrderID,
+	Sales,
+	CASE
+		WHEN Sales > 50 THEN 'HIGH'
+		WHEN Sales > 20 THEN 'Medium'
+		ELSE 'LOW'
+	END Category 
+FROM Sales.Orders) t
+GROUP BY Category
+ORDER BY TotalSales DESC

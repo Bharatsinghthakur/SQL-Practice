@@ -77,3 +77,19 @@ SELECT
 		ELSE 'NOT AVAILABLE'
 	END 
 FROM Sales.Employees 
+
+-- quick form 
+
+/*
+when we need to check one column value with = operator 
+
+CASE Country
+	WHEN 'GERMANY' THEN 'DE'
+	WHEN 'INDIA' THEN 'IND'
+	WHEN 'UNITED STATES' THEN 'US'
+	WHEN 'France' THEN 'FR'
+	WHEN 'Italy' THEN 'IT'
+	ELSE 'n/a'
+END 
+*/
+

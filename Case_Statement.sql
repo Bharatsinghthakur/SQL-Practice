@@ -41,6 +41,8 @@ CASE
 END Category
 FROM Sales.Orders
 
+
+-- better way with subquery
 SELECT
 	Category,
 	SUM(Sales) As TotalSales
@@ -56,3 +58,22 @@ FROM(
 FROM Sales.Orders) t
 GROUP BY Category
 ORDER BY TotalSales DESC
+
+/*
+Mapping values : transforming 
+Transforming the value from one form to another 
+-- from 0,1 need active & Inactive
+*/
+-- Reterieve Employee details with gender displayed Full text
+
+SELECT 
+	EmployeeID,
+	FirstName,
+	LastName,
+	Gender,
+	CASE
+		WHEN Gender='F' THEN 'FEMALE'
+		WHEN Gender='M' THEN 'MALE'
+		ELSE 'NOT AVAILABLE'
+	END 
+FROM Sales.Employees 

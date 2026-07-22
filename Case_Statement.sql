@@ -93,3 +93,24 @@ CASE Country
 END 
 */
 
+/*
+Handling Nulls
+Nulls can lead to inaccurate results , which can lead to wrong decesion making
+
+*/
+-- FIND the average scores of customers and treat NULLs as 0 and additional 
+-- provide details like customer ID & last name 
+
+SELECT 
+	CustomerID,
+	Score,
+	CASE 
+			WHEN Score is NULL THEN 0
+			ELSE Score
+		END AvgScore,
+	AVG(CASE 
+			WHEN Score is NULL THEN 0
+			ELSE Score
+		END) OVER() AvgCustomerClean,
+	AVG(Score) OVER() AvgCustomer
+FROM Sales.Customers

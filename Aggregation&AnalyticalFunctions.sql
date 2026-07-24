@@ -84,3 +84,31 @@ will get 4 orders.
  FIRST_VALUE(expr)
 
 */
+
+-- why group by is not enough 
+-- Find the total sales across all orders
+USE SalesDB;
+
+SELECT 
+    ProductID,
+    SUM(Sales) TotalSales
+FROM Sales.Orders
+GROUP BY ProductID
+
+-- Find the total sales across all orders
+-- THE number of the rows in the output is defined by the dimensions
+
+-- with Additonally provide details such orderId, Orderdate 
+
+-- if we try to solve this with group by it will give error 
+-- As GROUP BY rule -- All columns in SELECT must be Included by GROUP BY
+-- GROUP BY has limit like we cannot do aggreagtions and provide details at  same time
+
+SELECT
+    OrderId,
+    OrderDate,
+    ProductID,
+    SUM(Sales) OVER(PARTITION BY ProductID) TotalSalesByProducts
+FROM Sales.Orders
+
+-- RESULT granularity window functions results a result for each row

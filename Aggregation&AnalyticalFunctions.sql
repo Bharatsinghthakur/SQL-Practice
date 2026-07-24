@@ -51,3 +51,36 @@ SELECT
 FROM Orders 
 
 --- 
+
+/*
+Window Functions : we also called them analytical function
+Perform calculations (eg: aggregation) on a specific subset of data,
+Without losing the level of details of rows.
+
+-- Row level calculations 
+we dont lose the level of details . IF in input data we have 4 orders in output also we 
+will get 4 orders.
+
+** THE GRANULARITY STAYS THE SAME 
+ -- AGGREGATIONS + DETAILS
+ -- WINDOW FUNCTIONS 
+ ** AGGREGATION FUNCTIONS 
+ - SUM(expr)
+ - COUNT(expr)
+ - AVG(expr)
+ - MIN(expr)
+ -MAX(expr)
+ ** RANK FUNCTIONS
+ ROW_NUMBER()
+ RANK()
+ DENSE_RANK()
+ CUME_DIST()
+ PERCENT_RANK()
+ NTILE(n)
+
+ ** VALUE(analytics) functions
+ LEAD(expr,offset,default)
+ LAG(expr,offset,default)
+ FIRST_VALUE(expr)
+
+*/

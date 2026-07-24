@@ -82,6 +82,7 @@ will get 4 orders.
  LEAD(expr,offset,default)
  LAG(expr,offset,default)
  FIRST_VALUE(expr)
+ LAST_VALUR(expr)
 
 */
 
@@ -112,3 +113,26 @@ SELECT
 FROM Sales.Orders
 
 -- RESULT granularity window functions results a result for each row
+
+/*
+Window function Syntax:
+
+Window_function(expr) OVER( PARTITION BY Category ORDER BY OrderDate ROWS UNBOUNDED PRECEDING)
+
+OVER CLAUSE - Tells sql that the function used is a window function. IT defines the 
+window or subset of the data
+
+*/
+
+/* Window function PARTITION BY 
+
+DIVIDES the result set into partitions(WINDOWS)
+
+-- if we keep it empty like
+SUM(Sales) OVER() -- calculation is done on entier data
+
+SUM(Sales) OVER(PARITION BY Product) 
+-- IT is going to divide the whole data into partitions of windows
+
+*/
+

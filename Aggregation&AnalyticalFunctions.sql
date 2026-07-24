@@ -133,6 +133,8 @@ SUM(Sales) OVER() -- calculation is done on entier data
 
 SUM(Sales) OVER(PARITION BY Product) 
 -- IT is going to divide the whole data into partitions of windows
+-- calculations is done individually on each window
 
+SUM()
 */
 

@@ -149,3 +149,6 @@ SELECT
     Rank() OVER(ORDER BY SUM(Sales) DESC) RankCustomers
 FROM Sales.Orders
 GROUP BY CustomerID
+
+-- SQL Window Functions
+-- Perform calculations On subset of data without losing details

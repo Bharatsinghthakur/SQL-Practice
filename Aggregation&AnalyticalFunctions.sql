@@ -111,6 +111,7 @@ SELECT
     ProductID,
     SUM(Sales) OVER(PARTITION BY ProductID) TotalSalesByProducts
 FROM Sales.Orders
+WHERE ProductID IN (101,102)
 
 -- RESULT granularity window functions results a result for each row
 

@@ -140,3 +140,11 @@ SUM() -- will work as simple aggreagtion function
 
 */
 
+-- Rank customers based on their Ranks
+
+SELECT 
+    CustomerID,
+    SUM(Sales) TotalSales,
+    Rank() OVER(ORDER BY SUM(Sales) DESC) RankCustomers
+FROM Sales.Orders
+GROUP BY CustomerID

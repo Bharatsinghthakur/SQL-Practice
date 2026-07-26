@@ -149,3 +149,13 @@ SELECT
     Rank() OVER(ORDER BY SUM(Sales) DESC) RankCustomers
 FROM Sales.Orders
 GROUP BY CustomerID
+
+-- Rank customers based on their Ranks
+-- Based on there Rank 
+
+SELECT 
+    CustomerID,
+    SUM(Sales) TotalSales,
+    Rank() OVER(ORDER BY SUM(Sales) DESC) RankCustomers
+FROM Sales.Orders
+GROUP BY CustomerID

@@ -149,36 +149,3 @@ SELECT
     Rank() OVER(ORDER BY SUM(Sales) DESC) RankCustomers
 FROM Sales.Orders
 GROUP BY CustomerID
-
--- SQL Window Functions
--- Perform calculations On subset of data without losing details
-
-*/
-
-/* Window function PARTITION BY 
-
-DIVIDES the result set into partitions(WINDOWS)
-
--- if we keep it empty like
-SUM(Sales) OVER() -- calculation is done on entier data
-
-SUM(Sales) OVER(PARITION BY Product) 
--- IT is going to divide the whole data into partitions of windows
--- calculations is done individually on each window
- 
-SUM() -- will work as simple aggreagtion function 
-
-*/
-
--- Rank customers based on their Ranks
--- Based on there Rank 
-
-SELECT 
-    CustomerID,
-    SUM(Sales) TotalSales,
-    Rank() OVER(ORDER BY SUM(Sales) DESC) RankCustomers
-FROM Sales.Orders
-GROUP BY CustomerID
-
--- SQL Window Functions
--- Perform calculations On subset of data without losing details

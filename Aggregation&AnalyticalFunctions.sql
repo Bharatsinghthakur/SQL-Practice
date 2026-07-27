@@ -150,3 +150,16 @@ SELECT
 FROM Sales.Orders
 GROUP BY CustomerID
 
+
+-- Find the total sales for each combination of product and order status
+
+SELECT 
+    OrderId,
+    OrderDate,
+    ProductID,
+    OrderStatus,
+    Sales,
+SUM(Sales) OVER() TotalSales,
+SUM(Sales) OVER(PARTITION BY ProductID) SalesByProducts,
+SUM(Sales) OVER(PARTITION BY ProductID,OrderStatus) SalesByProductAndStatus
+From Sales.Orders

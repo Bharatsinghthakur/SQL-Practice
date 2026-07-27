@@ -163,3 +163,55 @@ SUM(Sales) OVER() TotalSales,
 SUM(Sales) OVER(PARTITION BY ProductID) SalesByProducts,
 SUM(Sales) OVER(PARTITION BY ProductID,OrderStatus) SalesByProductAndStatus
 From Sales.Orders
+
+
+
+/*
+Order By - sort your data within a window (Ascending | Descending)
+orderBy is optional for aggreagtion function , require for Rank function & Value function
+
+SQL will first partition it by MONTH and Once the window is divided seprately . IT will 
+sort each window seprately for DESCENDING order.
+*/
+
+-- Rank each order based on their sales from highest to lowest 
+-- additionaly provide details such as orderId, orderdate
+
+SELECT 
+    OrderID,
+    OrderDate,
+    Sales,
+    RANK() OVER(ORDER BY Sales DESC) RankSales
+FROM Sales.Orders
+
+
+/*
+Window Frame : 
+    define a subset of rows within each window that is relevant for each calculations.
+
+Frame clause : 
+    entire data > windows 1 , window 2 > within window 1 subset frame 1,2
+
+Frame types 
+   Rows 
+   Range
+
+AVG(Sales) OVER(PARTITION BY Category ORDER BY OrderDate ROWS BETWEEN CURRENT ROW 
+    AND UNBOUNDED FOLLOWING)
+*/
+
+/*
+
+FRAME BOUNDRIES (lower value)
+- CURRENT ROW
+- N PRECEDING
+- UNBOUNDED PRECEDING
+
+UBOUNDED FOLLOWING(Higher Value)
+- CURRENT ROW
+- N FOLLOWING
+- UNBOUNDED FOLLOWING
+
+** Frame Clause can only be used together with OREDER BY CLAUSE
+** Lower Boundry value must be before the higher value
+*/

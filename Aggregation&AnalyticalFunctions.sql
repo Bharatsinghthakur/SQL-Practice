@@ -225,3 +225,8 @@ SELECT
     SUM(Sales) OVER(PARTITION BY OrderStatus ORDER BY OrderDate ROWS
     BETWEEN CURRENT ROW AND 2 FOLLOWING) TotalSales
 FROM Sales.Orders
+
+
+/*
+Default frame : Rows between unbounded preceding & current Frame .
+*/

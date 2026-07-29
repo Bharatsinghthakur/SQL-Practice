@@ -230,3 +230,16 @@ FROM Sales.Orders
 /*
 Default frame : Rows between unbounded preceding & current Frame .
 */
+
+
+-- find the total sales for each order status only for two products 101 and 102
+
+SELECT 
+    OrderID,
+    OrderDate,
+    OrderStatus,
+    ProductID,
+    Sales,
+    SUM(Sales) OVER (PARTITION BY OrderStatus) TotalSales
+FROM Sales.Orders
+WHERE ProductID IN (101,102)

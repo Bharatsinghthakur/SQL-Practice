@@ -46,5 +46,43 @@ MAX(expr) - Return the MAX of values in a window
 
 /* Aggreagte window function COUNT()
 Return the number of rows within a window
+COUNT(1) is equal to COUNT(*)
+with COUNT(*) -- it will count even the nulls everything
 
+COUNT(column) --  it will count only the values in the window
+-- count the total number of rows even the dublicates 
 */
+
+-- find the total number of orders 
+-- additonally provide details such orderID,order Date
+
+SELECT 
+OrderID,
+OrderDate,
+CustomerID,
+COUNT(*) OVER() TotalOrders ,
+COUNT(*) OVER(PARTITION BY CustomerID) OrdersByCustomers
+FROM Sales.Orders
+
+
+-- find the total number of customers
+-- additionally provide All customers Details
+
+SELECT 
+    *,
+    COUNT(*) OVER() TotalCustomersStar,
+    COUNT(*) OVER() TotalCustomers,
+    COUNT(Score) OVER() TotalSCores,
+    COUNT(Country) OVER() TotalCountry
+FROM Sales.Customers
+
+-- Check whether the table 'orders' contains any dublicates rows
+
+SELECT 
+    * 
+FROM (
+    SELECT
+        OrderID,
+        COUNT(*) OVER(PARTITION BY OrderID) CheckPK
+    FROM Sales.OrdersArchive
+)t WHERE CheckPk > 1

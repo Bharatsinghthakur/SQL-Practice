@@ -33,3 +33,18 @@ SELECT
     RANK() OVER(ORDER BY SUM(Sales) DESC) RankCustomers
 FROM Sales.Orders
 GROUP BY CustomerID
+
+/*
+Aggreagate function 
+
+COUNT(expr) - Returns the number of rows in a window
+SUM(expr)  - Return the sum of values in a window
+AVG(expr) - Return the AVG of values in a window
+MIN(expr) - Return the MIN of values in a window
+MAX(expr) - Return the MAX of values in a window
+*/
+
+/* Aggreagte window function COUNT()
+Return the number of rows within a window
+
+*/

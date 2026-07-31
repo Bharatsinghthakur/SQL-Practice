@@ -86,3 +86,15 @@ FROM (
         COUNT(*) OVER(PARTITION BY OrderID) CheckPK
     FROM Sales.OrdersArchive
 )t WHERE CheckPk > 1
+
+------------------------------------------------------------------------------------
+-- part of all analysis -- shows the contribution of each data point to overall dataset
+-- find the percentage contribution of each product's sales to total sales 
+
+SELECT 
+    OrderID,
+    ProductID,
+    Sales,
+    SUM(Sales) OVER() TotalSales,
+  ROUND(  CAST (Sales AS Float) / SUM(Sales) OVER() * 100 , 2) PercentageOfTotal
+FROM Sales.Orders

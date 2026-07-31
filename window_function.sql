@@ -135,4 +135,22 @@ SELECT
 FROM Sales.Orders
 )t WHERE Sales > AvgSales
 
--- 
+-- MIN & MAX
+-- find the minimum of the value in a window.
+-- find the maximum of the value in a window.
+
+-- find the highest and lowerst sales across all orders
+-- find the highest and lwoers sales for each product
+-- additionally provide details like orderID and order date.
+
+
+SELECT 
+    OrderID,
+    OrderDate,
+    ProductID,
+    Sales,
+    MAX(Sales) OVER() HighestSales,
+    MIN(Sales) OVER() LowestSales,
+    MAX(Sales) OVER(PARTITION BY ProductID) HigheshSalesByProduct,
+    MIN(Sales) OVER(PARTITION BY ProductID) LowestSalesByProduct
+FROM Sales.Orders

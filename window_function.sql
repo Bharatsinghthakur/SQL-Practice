@@ -154,3 +154,16 @@ SELECT
     MAX(Sales) OVER(PARTITION BY ProductID) HigheshSalesByProduct,
     MIN(Sales) OVER(PARTITION BY ProductID) LowestSalesByProduct
 FROM Sales.Orders
+
+
+
+-- show the employee who has the highest salaries 
+
+SELECT 
+    * 
+FROM(
+SELECT
+    *,
+    MAX(COALESCE(Salary,0)) OVER(PARTITION BY Department) HighestSalary
+    FROM Sales.Employees
+)t WHERE Salary = HighestSalary

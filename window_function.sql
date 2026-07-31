@@ -98,3 +98,41 @@ SELECT
     SUM(Sales) OVER() TotalSales,
   ROUND(  CAST (Sales AS Float) / SUM(Sales) OVER() * 100 , 2) PercentageOfTotal
 FROM Sales.Orders
+
+-- Find the average sales for each product 
+-- NUll should be zero 
+
+SELECT
+    OrderID,
+    OrderDate,
+    Sales,
+    ProductID,
+    AVG(Sales) OVER() AvgSales,
+    AVG(Sales) OVER(PARTITION BY ProductID) AvgSalesByProducts
+FROM Sales.Orders
+
+-- find the average scores of customers
+-- additionally Provide details such as CustomerID and Last Name
+
+SELECT 
+    CustomerID,
+    LastName,
+    Score,
+    COALESCE(Score,0) CustomerScore,
+    AVG(Score) OVER() AvgScore,
+    AVG(COALESCE(Score,0)) OVER() AvgScoreWithoutNull
+FROM Sales.Customers
+
+-- Find all orders where sales are higher than the average sale across all orders
+SELECT 
+* 
+FROM(
+SELECT 
+    OrderID,
+    ProductID,
+    Sales,
+    AVG(Sales) OVER() AvgSales
+FROM Sales.Orders
+)t WHERE Sales > AvgSales
+
+-- 

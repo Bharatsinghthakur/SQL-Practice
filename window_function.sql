@@ -167,3 +167,16 @@ SELECT
     MAX(COALESCE(Salary,0)) OVER(PARTITION BY Department) HighestSalary
     FROM Sales.Employees
 )t WHERE Salary = HighestSalary
+
+-- Find the deviation of each sales from the minimum and maximum sales amounts.
+
+SELECT
+    OrderID,
+    OrderDate,
+    ProductID,
+    Sales,
+    MAX(Sales) OVER() highestSales,
+    MIN(Sales) OVER() LowestSales,
+    Sales - MIN(Sales) OVER() DeviationFromMin,
+    MAX(Sales) OVER() - Sales DeviationFromMax
+FROM Sales.Orders

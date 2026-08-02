@@ -60,3 +60,5 @@ SELECT
 	DENSE_RANK() OVER(ORDER BY Sales DESC) SalesRank_DenseRank
 
 FROM Sales.Orders
+
+-- 

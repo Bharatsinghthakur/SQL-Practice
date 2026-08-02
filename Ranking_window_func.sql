@@ -33,3 +33,30 @@ SELECT
 	Sales,
 	ROW_NUMBER() OVER(ORDER BY Sales DESC) SalesRank_Row
 FROM Sales.Orders
+
+-- RANK()
+-- assign a rank to each row
+-- It handles ties 
+-- It leaves gaps in ranking(shared ranking,leaves gaps skipping)
+SELECT 
+	OrderID,
+	ProductID,
+	Sales,
+	ROW_NUMBER() OVER(ORDER BY Sales DESC) SalesRank_Row,
+	RANK() OVER(ORDER BY Sales DESC) SalesRank_Rank
+FROM Sales.Orders
+
+-- DENSE_RANK()
+-- assign a rank to each row
+-- it handles ties
+-- it doesn't leaves gaps in ranking (shared rank,leaves no gaps)
+
+SELECT 
+	OrderID,
+	ProductID,
+	Sales,
+	ROW_NUMBER() OVER(ORDER BY Sales DESC) SalesRank_Row,
+	RANK() OVER(ORDER BY Sales DESC) SalesRank_Rank,
+	DENSE_RANK() OVER(ORDER BY Sales DESC) SalesRank_DenseRank
+
+FROM Sales.Orders

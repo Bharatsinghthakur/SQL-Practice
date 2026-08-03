@@ -227,3 +227,15 @@ SELECT
     ROW_NUMBER() OVER(ORDER BY OrderID,OrderDate) UniqueID,
     *
 FROM Sales.OrdersArchive
+
+-- Indentify Dublicates
+
+-- Indentify dublicates rows in the table 'OrderArchieve'
+-- and return a clean result without any dublicates
+
+SELECT * FROM (
+SELECT 
+ROW_NUMBER() OVER(PARTITION BY OrderID ORDER BY CreationTime DESC) rn,
+* 
+FROM Sales.OrdersArchive
+)t WHERE rn=1

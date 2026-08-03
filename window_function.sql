@@ -207,6 +207,7 @@ SELECT
  FROM Sales.Orders
  )t WHERE RankByProduct = 1
 
+ -- Bottom N analysis
  -- find the lowest 2 customers based on their total sales
 SELECT * 
 FROM(
@@ -217,3 +218,12 @@ SELECT
 FROM Sales.Orders
 GROUP BY 
 CustomerID)t WHERE RankCustomers <= 2
+
+-- Generate Unique IDs -- paginating
+-- Assign unique IDs to rows of the 'Order Archieve' table 
+
+
+SELECT 
+    ROW_NUMBER() OVER(ORDER BY OrderID,OrderDate) UniqueID,
+    *
+FROM Sales.OrdersArchive

@@ -258,20 +258,3 @@ SELECT
     NTILE(2) OVER( ORDER BY Sales DESC) twoBucket,
     NTILE(1) OVER( ORDER BY Sales DESC) OneBucket
 FROM Sales.Orders
-
-/*
-NTILE():
-        Divides the rows into a specfied number of approximately equal groups(buckets)
-
-FOR EVEN --        bucket size = NUMBER OF ROWS / NUMBER OF BUCKETS
- FOR ODD -- LARGER GROUP COMES FIRST
-*/
-
-SELECT 
-    OrderID,
-    Sales,
-    NTILE(4) OVER( ORDER BY Sales DESC) FourBucket,
-    NTILE(3) OVER( ORDER BY Sales DESC) ThreeBucket,
-    NTILE(2) OVER( ORDER BY Sales DESC) twoBucket,
-    NTILE(1) OVER( ORDER BY Sales DESC) OneBucket
-FROM Sales.Orders

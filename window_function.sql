@@ -281,3 +281,33 @@ SELECT
     NTILE(2) OVER(ORDER BY OrderID) Buckets,
     *
 FROM Sales.Orders
+
+/*
+Percentage Based Ranking 
+
+SQL gonna calculate a relative position as percentage and assign it for each row
+so the output would be continous normalize scale from 0 to 1 . Good for distribution analysis
+
+-- CUME_DIST():
+    cumulative distribution calculate the distribution of data points 
+    within a window
+
+    CUME_DIST = position No./ number of rows
+
+-- PERCENTAGE_RANK : Calculate the relative position of last occurance 
+of the same value .
+
+    PERCENT_RANK = Position No. - 1 / Number of rows - 1
+*/
+
+-- Find the products that falls within the highest 40% of the prices.
+SELECT *
+FROM(
+SELECT  
+    Product,
+    Price,
+    CUME_DIST() OVER (ORDER BY Price DESC) DistRank
+FROM Sales.Products
+)t
+WHERE DistRank <= 0.4
+

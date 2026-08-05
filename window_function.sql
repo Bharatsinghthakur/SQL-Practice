@@ -301,7 +301,8 @@ of the same value .
 */
 
 -- Find the products that falls within the highest 40% of the prices.
-SELECT *
+SELECT *,
+CONCAT(DistRank * 100 , '%') DistRankPerc
 FROM(
 SELECT  
     Product,

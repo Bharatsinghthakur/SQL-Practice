@@ -258,3 +258,26 @@ SELECT
     NTILE(2) OVER( ORDER BY Sales DESC) twoBucket,
     NTILE(1) OVER( ORDER BY Sales DESC) OneBucket
 FROM Sales.Orders
+
+-- Segement all orders into 3 categories: high, medium and low sales 
+SELECT 
+*,
+CASE WHEN Buckets = 1 THEN 'High'
+     WHEN Buckets = 2 THEN 'Medium'
+     WHEN Buckets = 3 THEN 'Low'
+END SaleSegmentations
+FROM (
+SELECT 
+    OrderID,
+    Sales,
+    NTILE(3) OVER(ORDER BY Sales DESC) Buckets
+FROM Sales.Orders
+)t
+
+
+-- In order to export the data , divide the orders into 2 groups.
+
+SELECT 
+    NTILE(2) OVER(ORDER BY OrderID) Buckets,
+    *
+FROM Sales.Orders

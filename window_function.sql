@@ -344,7 +344,8 @@ syntax :
 -- change in sales between the current and previous month
 SELECT 
 *,
-CurrentMonthSales - PreviousMonthSales AS MOM_Change
+CurrentMonthSales - PreviousMonthSales AS MOM_Change,
+ROUND(CAST((CurrentMonthSales - PreviousMonthSales) AS FLOAT) / PreviousMonthSales * 100 ,1) AS Mom_percent
 FROM
 (
 SELECT 
@@ -355,3 +356,15 @@ FROM Sales.Orders
 GROUP BY 
     MONTH(OrderDate)
 )t 
+
+-- In order to analyze customer loyalty, rank customers based on the
+-- average days between their orders
+
+SELECT
+    OrderID,
+    CustomerID,
+    OrderDate CurrentOrder,
+    LEAD(OrderDate) OVER(PARTITION BY CustomerID ORDER BY OrderDate) NextOrder,
+    DATEDIFF(day,OrderDate,LEAD(OrderDate) OVER(PARTITION BY CustomerID ORDER BY OrderDate)) DaysUntilNextOrder
+FROM Sales.Orders
+ORDER BY CustomerID , OrderDate

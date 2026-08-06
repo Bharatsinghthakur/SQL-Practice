@@ -312,3 +312,21 @@ FROM Sales.Products
 )t
 WHERE DistRank <= 0.4
 
+----------------------------------------
+
+/*
+Window value Function 
+
+we use value function to get access a value from other Row
+
+- LAG()
+- LEAD()
+- FIRST_VALUE()
+- LAST_VALUE()
+
+*/
+
+/*
+
+
+*/

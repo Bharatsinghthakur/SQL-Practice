@@ -327,6 +327,31 @@ we use value function to get access a value from other Row
 */
 
 /*
+LEAD & LAG
 
+-- LEAD() : 
+        access a value from the next row within a window 
+-- LAG() :
+        access a value from a previous row within a window
 
+syntax :
+    LEAD(expr,offset,defaultvalue) over(PARTITION BY ProductID ORDER BY OrderDate)
+
+    ** ORDER BY Is required
 */
+
+-- Analyze the month-over-month (MOM) performance by finding the percentage 
+-- change in sales between the current and previous month
+SELECT 
+*,
+CurrentMonthSales - PreviousMonthSales AS MOM_Change
+FROM
+(
+SELECT 
+    MONTH(OrderDate) OrderMonth,
+    SUM(Sales) CurrentMonthSales,
+    LAG(SUM(Sales)) OVER(ORDER BY MONTH(OrderDate)) PreviousMonthSales
+FROM Sales.Orders
+GROUP BY 
+    MONTH(OrderDate)
+)t 

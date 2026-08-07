@@ -274,7 +274,6 @@ SELECT
 FROM Sales.Orders
 )t
 
-
 -- In order to export the data , divide the orders into 2 groups.
 
 SELECT 
@@ -362,7 +361,7 @@ GROUP BY
 SELECT 
 CustomerID,
 AVG(DaysUntilNextOrder) AVGdays,
-RANK() OVER(ORDER BY AVG(DaysUntilNextOrder)) RankAvg
+RANK() OVER(ORDER BY COALESCE(AVG(DaysUntilNextOrder),999999)) RankAvg
 FROM(
 SELECT
     OrderID, 
@@ -373,3 +372,7 @@ SELECT
 FROM Sales.Orders
 )t
 GROUP BY CustomerID
+
+
+--------------------------------------------------
+

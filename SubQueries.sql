@@ -41,6 +41,30 @@ capacity - can hold small amount of data
 
 */
 
+/*
+DISK STORAGE 
+- USER 
+- SYSTEM CATALOG
+- TEMPERORY DATA
+
+
+USER DATA STORAGE : It is the main content of the database where the actual data
+that user care about is stored.
+
+DB STORAGE:
+System CATALOG: a database internal storage for its own information . A blueprint
+that keeps track of everything about the database itself , not the user data
+
+- It holds the meta data information about the database.
+-- what happens behind is that database server not only stored the data inside 
+but it is also going to store diffrent type of data inside datbase it is meta data
+
+
+INFORMATION SCHEMA :
+a system defined schema with built in views that provide info about the database
+like table & columns.
+*/
+
 USE SalesDB;
 
 SELECT * 

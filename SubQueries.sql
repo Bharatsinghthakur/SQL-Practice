@@ -40,3 +40,8 @@ speed - extreme fast to read & write
 capacity - can hold small amount of data
 
 */
+
+USE SalesDB;
+
+SELECT * 
+FROM INFORMATION_SCHEMA.COLUMNS

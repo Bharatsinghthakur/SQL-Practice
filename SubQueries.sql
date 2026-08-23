@@ -69,3 +69,11 @@ USE SalesDB;
 
 SELECT * 
 FROM INFORMATION_SCHEMA.COLUMNS
+
+-----------------------------------
+
+/*
+What is subquery ?
+Query inside another query
+
+*/

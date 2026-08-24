@@ -74,6 +74,27 @@ FROM INFORMATION_SCHEMA.COLUMNS
 
 /*
 What is subquery ?
-Query inside another query
+Query inside another query 
+
+scalar subquery : It is a subquery will return only one single value
+
+row subquery: It is going to return multiple rows & single column.
+
+table Subquery: It is going to return multiple rows & multiple columns.
 
 */
+-- Scalar Subquery 
+SELECT 
+	AVG(Sales)
+FROM Sales.Orders
+
+-- Row Subquery
+SELECT 
+	CustomerID
+FROM sales.Orders
+
+-- Table subquery
+SELECT 
+	OrderId,
+	OrderDate
+FROM Sales.Orders

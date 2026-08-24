@@ -121,3 +121,18 @@ FROM
 		AVG(Price) OVER() AvgPrice
 FROM Sales.Products)t
 WHERE Price > AvgPrice
+
+-- Rank Customers based on their total amount of sales
+
+SELECT 
+*,
+RANK() OVER(ORDER BY TotalSales DESC) CustomerRank
+FROM
+-- subquery
+	(SELECT 
+		CustomerID,
+		SUM(Sales) TotalSales
+	FROM Sales.Orders
+	GROUP BY CustomerID)t
+
+

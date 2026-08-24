@@ -98,3 +98,26 @@ SELECT
 	OrderId,
 	OrderDate
 FROM Sales.Orders
+
+/*
+(Subquery)
+Location / Clauses
+
+-- From : used as temporary table for the main query
+syntax 
+	SELECT column1 , column2 , ...
+	FROM ( SELECT column)
+
+*/
+
+-- find the products that have a price higher than the average price of all products
+SELECT 
+* 
+FROM 
+--subquery
+	(SELECT 
+		ProductID,
+		Price,
+		AVG(Price) OVER() AvgPrice
+FROM Sales.Products)t
+WHERE Price > AvgPrice

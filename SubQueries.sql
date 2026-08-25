@@ -135,4 +135,17 @@ FROM
 	FROM Sales.Orders
 	GROUP BY CustomerID)t
 
+	SELECT 
+*,
+RANK() OVER(ORDER BY TotalSales DESC) CustomerRank
+FROM
+-- subquery
+	(SELECT 
+		CustomerID,
+		SUM(Sales) TotalSales
+	FROM Sales.Orders
+	GROUP BY CustomerID)t
+
+
+
 

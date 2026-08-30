@@ -212,3 +212,58 @@ LEFT JOIN (
 	FROM Sales.Orders
 	GROUP BY CustomerID) o 
 ON C.CustomerID = o.CustomerID
+
+/*
+WHERE CLAUSE 
+used for complex filtering logic and makes query more flexible and dynamic
+
+Comparison : used to filter data by comparing two values
+syntax:
+SELECT Column1,column2
+FROM table1
+WHERE column = (SELECT column FROM table2 WHERE condition)
+*/
+
+-- Find the products that have price higher than the average price of all products
+
+SELECT 
+ProductID,
+Price,
+(SELECT AVG(Price) FROM Sales.Products) AvgPrice
+FROM Sales.Products
+WHERE Price > (SELECT AVG(Price) FROM Sales.Products)
+
+
+/*
+LOGICAL OPERATOR | SUBQUERY
+
+1 - IN opertor
+filtering(list of values)
+checks whether a values matches any values from a list
+
+-- syntax
+	 we can have multiple in values 
+SELECT Column1,Column2
+FROM table1
+WHERE Column IN( SELECT Column FROM table2 WHERE Condition)
+
+*/
+-- shows the details of orders made by customers in Germany 
+
+SELECT 
+	* 
+FROM Sales.Orders
+WHERE CustomerID IN 
+				(SELECT
+				CustomerID
+				FROM sales.Customers
+				WHERE Country= 'Germany')
+
+/*
+ANY | ALL operator
+-- we can have any or all operator immediately after comparison operator
+
+SELECT Column1 , Column2
+FROM TABLE1
+WHERE Column < ANY(SELECT Column FROM table1 WHERE Conditon)
+*/

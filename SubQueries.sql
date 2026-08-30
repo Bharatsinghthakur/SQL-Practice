@@ -202,7 +202,8 @@ other tables.
 
 -- show all customer details and find the total orders for each customers.
 SELECT 
-	* 
+	C.*,
+	o.TotalOrders
 FROM Sales.Customers C 
 LEFT JOIN (
 	SELECT 

@@ -157,22 +157,36 @@ FROM
 	FROM Sales.Orders
 	GROUP BY CustomerID)t
 
-		(SELECT 
-		CustomerID,
-		SUM(Sales) TotalSales
-	FROM Sales.Orders
-	GROUP BY CustomerID)t
-
-			SELECT 
-*,
-RANK() OVER(ORDER BY TotalSales DESC) CustomerRank
-FROM
--- subquery
-	(SELECT 
-		CustomerID,
-		SUM(Sales) TotalSales
-	FROM Sales.Orders
-	GROUP BY CustomerID)t
+----------------------------------------------------
 
 
+-- SUBQUERY LOCATION | Clauses
 
+-- SELECT | WHERE
+
+/*
+
+SELECT subquery
+used to aggreagte data side by side with the main query's data,
+allowing for direct comparsion
+
+syntax :
+
+mainquery
+SELECT 
+	Column1,
+	--subquery
+	(SELECT column FROM table WHERE condition) AS alias
+FROM table1
+
+*/
+
+-- Show the ProductIDs, Product names , prices and the total number of orders
+-- Main Query
+SELECT 
+	ProductId,
+	Product,
+	Price,
+	--subquery
+	(SELECT COUNT(*) FROM Sales.Orders) AS TotalOrders
+FROM Sales.Products

@@ -190,3 +190,24 @@ SELECT
 	--subquery
 	(SELECT COUNT(*) FROM Sales.Orders) AS TotalOrders
 FROM Sales.Products
+
+
+/*
+JOIN Subquery
+
+Used to prepare the data(filtering or aggregation) before joining it with
+other tables.
+
+*/
+
+-- show all customer details and find the total orders for each customers.
+SELECT 
+	* 
+FROM Sales.Customers C 
+LEFT JOIN (
+	SELECT 
+	customerID,
+	COUNT(*) TotalOrders
+	FROM Sales.Orders
+	GROUP BY CustomerID) o 
+ON C.CustomerID = o.CustomerID

@@ -266,4 +266,13 @@ ANY | ALL operator
 SELECT Column1 , Column2
 FROM TABLE1
 WHERE Column < ANY(SELECT Column FROM table1 WHERE Conditon)
+/*
+ANY | ALL operator
+-- we can have any or all operator immediately after comparison operator
+
+SELECT Column1 , Column2
+FROM TABLE1
+WHERE Column < ANY(SELECT Column FROM table1 WHERE Conditon)
+*/
+
 */

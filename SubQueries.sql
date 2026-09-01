@@ -280,3 +280,18 @@ WHERE Gender='F'
 -- we need a scalary value for this 
 AND Salary > ANY(SELECT Salary FROM Sales.Employees WHERE Gender='M')
 
+/*
+Correlated & Non-correlated Subqueries
+
+correlated : a query that relies on values from the main query always depending on 
+the main query. We have 4 rows subquery will execute 4 times
+
+Non correlated : a subquery that can independently from the Main query
+*/
+
+-- show all customer details and find the total orders of each customer
+
+SELECT
+*,
+(SELECT COUNT(*) FROM Sales.Orders o Where o.CustomerID = c.CustomerID) TotalSales
+FROM Sales.Customers c

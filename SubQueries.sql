@@ -266,13 +266,17 @@ ANY | ALL operator
 SELECT Column1 , Column2
 FROM TABLE1
 WHERE Column < ANY(SELECT Column FROM table1 WHERE Conditon)
-/*
-ANY | ALL operator
--- we can have any or all operator immediately after comparison operator
-
-SELECT Column1 , Column2
-FROM TABLE1
-WHERE Column < ANY(SELECT Column FROM table1 WHERE Conditon)
 */
 
-*/
+-- find female employees whose salaries are greater than salaries of any male employee
+
+SELECT
+	EmployeeID,
+	FirstName,
+	Gender,
+	Salary
+FROM Sales.Employees
+WHERE Gender='F'
+-- we need a scalary value for this 
+AND Salary > ANY(SELECT Salary FROM Sales.Employees WHERE Gender='M')
+

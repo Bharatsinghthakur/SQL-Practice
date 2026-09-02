@@ -300,6 +300,21 @@ FROM Sales.Customers c
 /*
 Exists - 
 check a subquery returns any rows
-
-
+syntax 
+SELECT column1,column2
+FROM Table2 
+WHERE EXISTS( SELECT 1 
+			FROM Table1
+			WHERE Table1.ID = Table2.ID
+			)
 */
+
+-- Show the deatils of orders made by customers in Germany 
+
+SELECT 
+* 
+FROM Sales.Orders o
+WHERE EXISTS (SELECT 1 
+			 FROM Sales.Customers c 
+			 WHERE Country = 'Germany'
+			 AND o.CustomerID = c.CustomerID)

@@ -295,3 +295,11 @@ SELECT
 *,
 (SELECT COUNT(*) FROM Sales.Orders o Where o.CustomerID = c.CustomerID) TotalSales
 FROM Sales.Customers c
+
+
+/*
+Exists - 
+check a subquery returns any rows
+
+
+*/

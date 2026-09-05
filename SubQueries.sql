@@ -332,15 +332,3 @@ check the existence of rows from another table (EXISTS)
 
 */
 
-/* 
--- Subqueries
-Query inside another query
-Breaks complex query into smaller managebale pieces
-
-USECASES
-create temporary result set
-prepare data before joining Tables
-dynamic & complex filtering 
-check the existence of rows from another table (EXISTS)
-
-*/

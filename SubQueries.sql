@@ -332,3 +332,26 @@ check the existence of rows from another table (EXISTS)
 
 */
 
+/* 
+-- Subqueries
+Query inside another query
+Breaks complex query into smaller managebale pieces
+
+USECASES
+create temporary result set
+prepare data before joining Tables
+dynamic & complex filtering 
+check the existence of rows from another table (EXISTS)
+
+*/
+
+
+-- Show the deatils of orders made by customers in Germany 
+
+SELECT 
+* 
+FROM Sales.Orders o
+WHERE EXISTS (SELECT 1 
+			 FROM Sales.Customers c 
+			 WHERE Country = 'Germany'
+			 AND o.CustomerID = c.CustomerID)

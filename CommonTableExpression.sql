@@ -17,11 +17,4 @@ _ NON RECURSIVE CTE
 a - Standalone CTE 
 b - Nested CTE
 - RECURSIVE CTE
-
-CTE TYPES 
-_ NON RECURSIVE CTE
-a - Standalone CTE 
-b - Nested CTE
-- RECURSIVE CTE
-
 */

@@ -18,3 +18,18 @@ a - Standalone CTE
 b - Nested CTE
 - RECURSIVE CTE
 */
+
+/*
+CTE syntax 
+WITH cte_name AS 
+(
+SELECT 
+FROM 
+WHERE 
+
+)
+
+SELECT 
+FROM cte_name
+WHERE 
+*/

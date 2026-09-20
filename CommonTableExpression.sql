@@ -20,6 +20,12 @@ b - Nested CTE
 */
 
 /*
+
+-- STAND ALONE CTE 
+Defined and used independently Runs independently as its self contained 
+and doesn't rely on Other CTEs or Queries.
+
+
 CTE syntax 
 WITH cte_name AS 
 (
@@ -33,3 +39,24 @@ SELECT
 FROM cte_name
 WHERE 
 */
+USE SalesDB;
+-- find the total sales per customer 
+
+WITH CTE_TOTAL_SALES AS
+(
+SELECT 
+	CustomerID,
+	SUM(Sales) AS TotalSales
+FROM Sales.Orders
+GROUP BY CustomerID
+)
+-- Main Query
+
+SELECT 
+	c.CustomerID,
+	c.FirstName,
+	c.LastName ,
+	cts.totalSales
+FROM Sales.Customers c
+LEFT JOIN CTE_TOTAL_SALES cts
+ON cts.CustomerID = c.CustomerID

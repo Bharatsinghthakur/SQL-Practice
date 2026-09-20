@@ -40,6 +40,34 @@ FROM cte_name
 WHERE 
 */
 USE SalesDB;
+/*
+Multiple StandAlone CTE's
+
+WITH CTE-NAME1 AS 
+(
+	SELECT ...
+	FROM ...
+	WHERE ...
+
+
+)
+, CTE_NAME2 AS
+(
+	SELECT ...
+	FROM ...
+	WHERE ...
+
+)
+---------
+SELECT 
+FROM CTE-NAME1
+JOIN CTE-NAME2
+WHERE
+
+*/
+
+
+
 -- find the total sales per customer 
 
 WITH CTE_TOTAL_SALES AS
@@ -49,14 +77,33 @@ SELECT
 	SUM(Sales) AS TotalSales
 FROM Sales.Orders
 GROUP BY CustomerID
+
 )
+,CTE_Last_Order AS 
+(
+SELECT 
+CustomerID,
+MAX(OrderDate) AS Last_Order
+FROM Sales.Orders
+GROUP BY CustomerID
+)
+
+
+-- find the last order date for each customer
 -- Main Query
 
 SELECT 
 	c.CustomerID,
 	c.FirstName,
 	c.LastName ,
-	cts.totalSales
+	cts.totalSales,
+	clo.Last_Order
 FROM Sales.Customers c
 LEFT JOIN CTE_TOTAL_SALES cts
 ON cts.CustomerID = c.CustomerID
+LEFT JOIN CTE_Last_Order clo
+ON clo.CustomerID = c.CustomerID
+
+
+
+

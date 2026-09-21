@@ -79,6 +79,8 @@ FROM Sales.Orders
 GROUP BY CustomerID
 
 )
+
+-- find the last order date for each customer
 ,CTE_Last_Order AS 
 (
 SELECT 
@@ -89,21 +91,32 @@ GROUP BY CustomerID
 )
 
 
--- find the last order date for each customer
--- Main Query
+
+-- Rank customers based on Total Sales Per customer (Nested CTE)
+, CTE_CUSTOMER_RANK AS
+(
+SELECT 
+CustomerID,
+TotalSales,
+Rank() OVER(ORDER BY TotalSales DESC) AS CustomerRank
+FROM CTE_Total_Sales
+)
+-- MAIN query
 
 SELECT 
-	c.CustomerID,
-	c.FirstName,
-	c.LastName ,
-	cts.totalSales,
-	clo.Last_Order
+c.CustomerID,
+c.FirstName,
+c.LastName,
+cts.TotalSales,
+clo.Last_Order,
+ccr.CustomerRank
 FROM Sales.Customers c
-LEFT JOIN CTE_TOTAL_SALES cts
-ON cts.CustomerID = c.CustomerID
+LEFT JOIN CTE_Total_Sales cts
+ON cts.CustomerID = c.CustomerID 
 LEFT JOIN CTE_Last_Order clo
-ON clo.CustomerID = c.CustomerID
-
+ON clo.CustomerID = c.CustomerID  
+LEFT JOIN CTE_CustomerRAnk ccr
+On cct.CustomerID = c.CustomerID
 
 
 

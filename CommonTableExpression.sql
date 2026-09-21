@@ -101,7 +101,7 @@ TotalSales,
 Rank() OVER(ORDER BY TotalSales DESC) AS CustomerRank
 FROM CTE_Total_Sales
 )
---- Segment customer based on their total sales.
+--- Segment customer based on their total sales(NESTED CTE).
 , CTE_Customer_Segments AS
 (
 SELECT 

@@ -65,31 +65,7 @@ JOIN CTE-NAME2
 WHERE
 
 */
-/*
-Multiple StandAlone CTE's
 
-WITH CTE-NAME1 AS 
-(
-	SELECT ...
-	FROM ...
-	WHERE ...
-
-
-)
-, CTE_NAME2 AS
-(
-	SELECT ...
-	FROM ...
-	WHERE ...
-
-)
----------
-SELECT 
-FROM CTE-NAME1
-JOIN CTE-NAME2
-WHERE
-
-*/
 
 
 -- find the total sales per customer 
@@ -157,9 +133,3 @@ LEFT JOIN CTE_Customer_Rank ccr
 On ccr.CustomerID = c.CustomerID
 LEFT JOIN CTE_Customer_Segments ccs
 ON ccs.CustomerID = c.CustomerID 
-
-
-
-
-
-

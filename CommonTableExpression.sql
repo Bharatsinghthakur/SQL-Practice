@@ -39,6 +39,26 @@ SELECT
 FROM cte_name
 WHERE 
 */
+/*
+
+-- STAND ALONE CTE 
+Defined and used independently Runs independently as its self contained 
+and doesn't rely on Other CTEs or Queries.
+
+
+CTE syntax 
+WITH cte_name AS 
+(
+SELECT 
+FROM 
+WHERE 
+
+)
+
+SELECT 
+FROM cte_name
+WHERE 
+*/
 USE SalesDB;
 
 -- find the total sales per customer 

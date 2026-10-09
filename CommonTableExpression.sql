@@ -107,3 +107,27 @@ LEFT JOIN CTE_Customer_Rank ccr
 On ccr.CustomerID = c.CustomerID
 LEFT JOIN CTE_Customer_Segments ccs
 ON ccs.CustomerID = c.CustomerID 
+
+
+/* RECURSIVE CTE
+SELF referencing query that repeatedly processed data until a specific condition is met 
+
+WITH CTE-NAME AS 
+(
+SELECT ...
+FROM ...
+WHERE ...  // anchor query
+
+UNION ALL
+
+SELECT ...
+FROM CTE-NAME 
+WHERE  [BREAK CONDITION] // RECURSIVE QUERY
+
+)
+-----------------
+SELECT 
+FROM CTE-NAME   // MAIN QUERY CTE USAGE 
+WHERE ...
+
+*/

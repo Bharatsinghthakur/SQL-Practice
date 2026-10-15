@@ -149,3 +149,25 @@ WITH SERIES AS (
 SELECT * 
 FROM SERIES
 
+/* RECURSIVE CTE
+SELF referencing query that repeatedly processed data until a specific condition is met 
+
+WITH CTE-NAME AS 
+(
+SELECT ...
+FROM ...
+WHERE ...  // anchor query
+
+UNION ALL
+
+SELECT ...
+FROM CTE-NAME 
+WHERE  [BREAK CONDITION] // RECURSIVE QUERY
+
+)
+-----------------
+SELECT 
+FROM CTE-NAME   // MAIN QUERY CTE USAGE 
+WHERE ...
+
+*/
